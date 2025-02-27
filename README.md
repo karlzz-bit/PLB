@@ -1,3 +1,4 @@
 # PLB
- Programming Language Basics\n
- 编程语言基础
+ Programming Language Basics
+
+编程语言基础
