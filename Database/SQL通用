@@ -1,0 +1,245 @@
+下面提供一个 Markdown 文档示例，每个命令分别展示常用格式和“全部参数”格式（即带完整参数的示例）。注意：不同数据库（如 MySQL、Oracle、SQL Server 等）的具体参数可能会有所不同，下列示例主要参考 ANSI SQL 标准及常见用法，可根据实际数据库平台进行调整。
+
+SQL 命令示例
+
+以下示例分别展示了常用格式（简洁版）和全部参数格式（详细版）的 SQL 命令。
+
+1. DDL —— 数据定义语言
+
+1.1 CREATE TABLE
+
+常用格式：
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50)
+);
+
+全部参数格式（详细版）：
+
+CREATE TABLE dbo.Employees (
+    EmployeeID INT NOT NULL,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    BirthDate DATE NULL,
+    Salary DECIMAL(10, 2) NULL,
+    Email VARCHAR(100) NULL,
+    CONSTRAINT PK_Employees PRIMARY KEY (EmployeeID),
+    CONSTRAINT CHK_Salary CHECK (Salary >= 0)
+) ON [PRIMARY];
+
+1.2 ALTER TABLE
+
+常用格式：
+
+ALTER TABLE Employees
+ADD Email VARCHAR(100);
+
+全部参数格式（详细版）：
+
+ALTER TABLE dbo.Employees
+ADD Email VARCHAR(100) NULL
+CONSTRAINT DF_Employees_Email DEFAULT ('noemail@example.com');
+
+1.3 DROP TABLE
+
+常用格式：
+
+DROP TABLE Employees;
+
+全部参数格式（详细版）：
+
+DROP TABLE IF EXISTS dbo.Employees;
+
+1.4 TRUNCATE TABLE
+
+常用格式：
+
+TRUNCATE TABLE Employees;
+
+全部参数格式（详细版）：
+
+TRUNCATE TABLE dbo.Employees;
+-- 注意：TRUNCATE 通常没有额外参数，但某些平台可能允许指定存储选项
+
+2. DML —— 数据操纵语言
+
+2.1 SELECT
+
+常用格式：
+
+SELECT * FROM Employees;
+
+全部参数格式（详细版）：
+
+SELECT EmployeeID, FirstName, LastName, Email, Salary
+FROM dbo.Employees
+WHERE Salary > 50000
+ORDER BY LastName ASC, FirstName ASC;
+
+2.2 INSERT
+
+常用格式：
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName)
+VALUES (1, 'John', 'Doe');
+
+全部参数格式（详细版）：
+
+INSERT INTO dbo.Employees 
+(
+    EmployeeID,
+    FirstName,
+    LastName,
+    BirthDate,
+    Email,
+    Salary
+)
+VALUES
+(
+    1, 'John', 'Doe', '1980-01-01', 'john.doe@example.com', 60000.00
+);
+
+2.3 UPDATE
+
+常用格式：
+
+UPDATE Employees
+SET Salary = 65000
+WHERE EmployeeID = 1;
+
+全部参数格式（详细版）：
+
+UPDATE dbo.Employees
+SET Salary = 65000,
+    Email = 'john.doe@newexample.com'
+WHERE EmployeeID = 1;
+
+2.4 DELETE
+
+常用格式：
+
+DELETE FROM Employees
+WHERE EmployeeID = 1;
+
+全部参数格式（详细版）：
+
+DELETE FROM dbo.Employees
+WHERE EmployeeID = 1 AND Email IS NOT NULL;
+
+2.5 MERGE（UPSERT 操作）
+
+常用格式：
+
+MERGE INTO TargetTable AS T
+USING SourceTable AS S
+ON (T.ID = S.ID)
+WHEN MATCHED THEN 
+    UPDATE SET T.Name = S.Name
+WHEN NOT MATCHED THEN
+    INSERT (ID, Name) VALUES (S.ID, S.Name);
+
+全部参数格式（详细版）：
+
+MERGE INTO dbo.Employees AS Target
+USING dbo.NewEmployees AS Source
+ON Target.EmployeeID = Source.EmployeeID
+WHEN MATCHED AND (Target.Email <> Source.Email OR Target.Salary <> Source.Salary) THEN
+    UPDATE SET 
+        Target.FirstName = Source.FirstName,
+        Target.LastName = Source.LastName,
+        Target.Email = Source.Email,
+        Target.Salary = Source.Salary
+WHEN NOT MATCHED BY TARGET THEN
+    INSERT (EmployeeID, FirstName, LastName, BirthDate, Email, Salary)
+    VALUES (Source.EmployeeID, Source.FirstName, Source.LastName, Source.BirthDate, Source.Email, Source.Salary)
+WHEN NOT MATCHED BY SOURCE THEN
+    DELETE;
+
+3. DCL —— 数据控制语言
+
+3.1 GRANT
+
+常用格式：
+
+GRANT SELECT, INSERT ON Employees TO User1;
+
+全部参数格式（详细版）：
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON dbo.Employees
+TO [User1]
+WITH GRANT OPTION;
+
+3.2 REVOKE
+
+常用格式：
+
+REVOKE INSERT ON Employees FROM User1;
+
+全部参数格式（详细版）：
+
+REVOKE SELECT, INSERT, UPDATE, DELETE
+ON dbo.Employees
+FROM [User1];
+
+4. TCL —— 事务控制语言
+
+4.1 COMMIT
+
+常用格式：
+
+COMMIT;
+
+全部参数格式（详细版）：
+
+COMMIT TRANSACTION;
+-- 某些平台可写为 COMMIT WORK;
+
+4.2 ROLLBACK
+
+常用格式：
+
+ROLLBACK;
+
+全部参数格式（详细版）：
+
+ROLLBACK TRANSACTION;
+-- 或回滚到保存点
+ROLLBACK TO SAVEPOINT sp1;
+
+4.3 SAVEPOINT
+
+常用格式：
+
+SAVEPOINT sp1;
+
+全部参数格式（详细版）：
+
+SAVEPOINT sp1;
+-- 部分平台允许为保存点指定更多选项，但一般 SAVEPOINT 命令较为简单
+
+4.4 SET TRANSACTION
+
+常用格式：
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+全部参数格式（详细版）：
+
+SET TRANSACTION 
+    ISOLATION LEVEL SERIALIZABLE,
+    READ WRITE;
+-- 可同时指定隔离级别、只读/可写等属性（具体语法依数据库平台）
+
+小结
+
+以上示例展示了 SQL 常见命令的两种写法：
+	•	常用格式：简单易记，适用于日常开发。
+	•	全部参数格式：展示了完整选项和参数，适合了解详细功能或进行高级配置时参考。
+
+你可以根据实际项目的数据库平台（如 MySQL、Oracle、SQL Server 等）选择合适的语法格式，并根据需要扩展更多参数设置。
+
+参考资料：
+￼  ￼  ￼
