@@ -7,18 +7,47 @@ print(math.sqrt(16))
 
 print("Hello, Python!")
 
-#Python中的数据类型
-a = 10        # 整型变量
-print(type(a))
-b = 3.14e2    # 浮点型变量
-print(type(b))
-c = 1 + 2j    # 复数变量
-print(type(c))
-d=True        # 布尔型变量
-print(type(d))
-e = "Hello"   # 字符串变量
-print(type(e))
+#Python中的变量
+
+
+#整型
+#十进制输出
+print(0b100)  # 二进制整数
+print(type(0b100))  # 输出结果为<class 'int'>
+print(0o100)  # 八进制整数
+print(type(0o100))  # 输出结果为<class 'int'>
+print(100)    # 十进制整数
+print(type(100))    # 输出结果为<class 'int'>
+print(0x100)  # 十六进制整数
+print(type(0x100))  # 输出结果为<class 'int'>
+#二进制输出
+print(bin(100))  # 输出结果为0b1100100
+#八进制输出
+print(oct(100))  # 输出结果为0o144
+#十六进制输出
+print(hex(100))  # 输出结果为0x64
+
+#浮点型
+print(123.456)    # 数学写法
+print(type(123.456))    # 输出结果为<class 'float'>
+print(1.23456e2)  # 科学计数法
+print(type(1.23456e2))  # 输出结果为<class 'float'>
+
+#字符串型
+print("Hello, Python!")  # 双引号字符串
+print(type("Hello, Python!"))  # 输出结果为<class 'str'>
+
+#布尔型
+print(True)  # 输出结果为True
+print(type(True))  # 输出结果为<class 'bool'>
+
+#复数型
+print(1 + 2j)  # 输出结果为(1+2j)
+print(type(1 + 2j))  # 输出结果为<class 'complex'>
+
+
 #数据类型转换
+d=True
 a=9+d         # 整型和布尔型相加
 print(a)      # 输出结果为10 
 print(int(False))  # 输出结果为0
@@ -88,3 +117,6 @@ print(4 not in y)  # True
 # 8. 按位或: |
 # 9. 比较运算符: ==, !=, >, >=, <, <=, is, is not, in, not in
 # 10. 逻辑运算符: not, and, or
+
+#海象运算符
+print(x := 5)  # 输出结果为5

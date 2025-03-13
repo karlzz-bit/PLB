@@ -1,5 +1,7 @@
 # Python program flow control
 #程序流程控制
+import time
+
 # 条件语句
 def check_number(num):
     if num > 0:

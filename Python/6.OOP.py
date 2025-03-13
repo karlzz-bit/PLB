@@ -202,3 +202,33 @@ an3=Cats("Cat")
 print(an1.speak())  #输出结果为：I am an animal.
 print(an2.speak())  #输出结果为：I am a dog.
 print(an3.speak())  #输出结果为：I am a cat.
+#属性修饰器
+class Triangle(object):
+    """三角形"""
+
+    def __init__(self, a, b, c):
+        """初始化方法"""
+        self.a = a
+        self.b = b
+        self.c = c
+
+    @staticmethod       #静态方法是用来处理类中不需要访问实例变量的方法。静态方法使用 `@staticmethod` 装饰器定义。
+    def is_valid(a, b, c):
+        """判断三条边长能否构成三角形(静态方法)"""
+        return a + b > c and b + c > a and a + c > b
+
+    @property           #
+    def perimeter(self):
+        """计算周长"""
+        return self.a + self.b + self.c
+
+    @property           
+    def area(self):
+        """计算面积"""
+        p = self.perimeter / 2
+        return (p * (p - self.a) * (p - self.b) * (p - self.c)) ** 0.5
+
+
+t = Triangle(3, 4, 5)
+print(f'周长: {t.perimeter}')
+print(f'面积: {t.area}')

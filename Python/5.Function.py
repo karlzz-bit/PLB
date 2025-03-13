@@ -46,9 +46,9 @@ def scope_example():
     print(local_var)
 
 scope_example()
-# print(local_var)  # 这行代码会报错，因为local_var是局部变量
+# print(local_var)  # 这行代码会报错,因为local_var是局部变量
 
-# 函数类型：理解函数类型，过滤函数filter()
+# 函数类型:理解函数类型,过滤函数filter()
 numbers = [1, 2, 3, 4, 5, 6]
 even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
 print(even_numbers)

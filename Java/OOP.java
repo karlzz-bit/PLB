@@ -1,26 +1,42 @@
-class Person {
+class Star {
     public String name;
     public int age;
-}
-class Book {
-    public String name;
-    public String author;
-    public String isbn;
-    public double price;
+    public double height;
+    public int weight;
+    public void sayHello(String target) {
+        System.out.println(name + " says: Hello, " + target + "!");
+    }
+    void sayGoodbye(String target) {
+        System.out.println(name + " says: Goodbye, " + target + "!");
+    }
+    private void sayGoodnight(String target) {
+        System.out.println(name + " says: Goodnight, " + target + "!");
+    }
+    void sayGoodnightPublic(String target) {
+        sayGoodnight(target);
+    }
+
 }
 public class OOP {
-    public static void println() {
-        System.out.println("hello");
-    }
     public static void main(String[] args) {
-        Person ming = new Person();
-        Book book = new Book();
-        System.out.println(book.name); // null
-        System.out.println(book.price); // 0.0
-        System.out.println(ming.name); // null
-        System.out.println(ming.age); // 0
-        ming.name = "Xiao Ming";
-        ming.age = -99; // age设置为负数
-        println();
+        // 创建一个Star对象
+        Star star = new Star();
+        // 设置字段
+        star.name = "张三";
+        star.age = 25;
+        star.height = 1.78;
+        star.weight = 72;
+        // 访问字段
+        System.out.println(star.name);
+        System.out.println(star.age);
+        System.out.println(star.height);
+        System.out.println(star.weight);
+        // 调用方法
+        star.sayHello("李四");
+        star.sayGoodbye("王五");
+        // star.sayGoodnight("赵六"); // 编译错误
+        star.sayGoodnightPublic("赵六");
+        System.out.println(star);
+        
     }
 }
