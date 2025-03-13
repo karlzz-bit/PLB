@@ -11,7 +11,37 @@
 1. **文件系统**：早期计算机系统使用文件来存储数据，但管理和查询效率低下。
 2. **关系型数据库（RDBMS）**：20 世纪 70 年代，关系型数据库诞生，使用表格存储数据，并通过 SQL 进行操作。
 3. **NoSQL 数据库**：随着大数据的兴起，非关系型数据库（如 MongoDB、Redis）出现，以支持更灵活的数据存储方式。
+# 数据库管理系统（DBMS）介绍
 
+## 1. 什么是数据库管理系统（DBMS）？
+数据库管理系统（Database Management System, DBMS）是一种用于定义、创建、管理和操作数据库的软件系统。它提供了一种高效、安全的方式来存储、组织和检索数据，同时支持多用户访问和数据一致性。
+
+## 2. 数据库管理系统的分类
+
+### 2.1 按数据模型分类
+根据数据模型的不同，DBMS 主要分为以下几类：
+- **层次数据库（Hierarchical DBMS）**：采用树状结构存储数据，每个父节点可以有多个子节点，但每个子节点只能有一个父节点。例如：IBM IMS。
+- **网状数据库（Network DBMS）**：采用图结构存储数据，允许一个节点有多个父节点，提高了数据的灵活性。例如：IDMS。
+- **关系数据库（Relational DBMS, RDBMS）**：使用表（表、行、列）来组织数据，并使用 SQL 进行操作，是目前最常见的数据库类型。例如：MySQL、PostgreSQL、Oracle、SQL Server。
+- **对象数据库（Object-Oriented DBMS, OODBMS）**：支持对象存储，适用于面向对象编程语言。例如：ObjectDB、db4o。
+- **文档数据库（Document-Oriented DBMS）**：使用文档存储数据，通常以 JSON、BSON 或 XML 格式表示，适用于非结构化或半结构化数据。例如：MongoDB。
+
+### 2.2 按数据分布方式分类
+- **集中式数据库（Centralized DBMS）**：所有数据存储在一个中央数据库服务器上，所有用户通过网络访问。例如：传统的企业数据库。
+- **分布式数据库（Distributed DBMS）**：数据分布存储在多个物理位置，用户可以访问不同节点的数据。例如：Google Spanner、Cassandra。
+
+### 2.3 按存储方式分类
+- **磁盘数据库（Disk-Based DBMS）**：数据存储在磁盘上，适用于大规模数据存储。例如：MySQL、PostgreSQL。
+- **内存数据库（In-Memory DBMS, IMDBMS）**：数据主要存储在内存中，访问速度快，适用于高性能计算。例如：Redis、MemSQL。
+
+### 2.4 按用途分类
+- **事务型数据库（OLTP - Online Transaction Processing）**：用于高并发的事务处理，例如银行系统、订单管理系统。例如：MySQL、SQL Server。
+- **分析型数据库（OLAP - Online Analytical Processing）**：用于大规模数据分析，例如数据仓库。例如：Amazon Redshift、ClickHouse。
+- **时序数据库（Time-Series DBMS）**：专门用于存储和查询时序数据，如物联网（IoT）和金融数据。例如：InfluxDB、TimescaleDB。
+- **图数据库（Graph DBMS）**：用于存储和查询图数据结构，适用于社交网络、推荐系统等。例如：Neo4j、ArangoDB。
+
+## 3. 总结
+数据库管理系统是现代数据存储和管理的核心工具，根据数据模型、存储方式、分布方式和用途的不同，可以分为多个类别。选择合适的 DBMS 需要根据具体的应用场景、性能需求和可扩展性要求进行综合考虑。
 ---
 
 ## 2. 数据模型与数据库类型

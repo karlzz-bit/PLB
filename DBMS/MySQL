@@ -1,0 +1,69 @@
+# MySQL 命令行工具汇总
+
+以下为在 Windows CMD 环境中直接执行的 MySQL 命令行工具，不涉及 SQL 语句操作，可用于服务器连接、数据库备份、管理和维护等任务。
+
+---
+
+## 1. mysql
+- **用途**：连接到 MySQL 服务器，启动交互式客户端。
+- **示例**：
+  ```cmd
+  mysql -h localhost -u root -p
+
+2. mysqldump
+	•	用途：备份数据库，导出数据库结构与数据到文件。
+	•	示例：
+
+mysqldump -u root -p 数据库名 > backup.sql
+
+
+
+3. mysqladmin
+	•	用途：执行管理任务，例如查看服务器状态、刷新权限、关闭服务器等。
+	•	示例：
+
+mysqladmin -u root -p status
+mysqladmin -u root -p shutdown
+
+
+
+4. mysqlshow
+	•	用途：显示数据库、表和列的信息，帮助了解当前服务器结构。
+	•	示例：
+
+mysqlshow -u root -p
+
+
+
+5. mysqlimport
+	•	用途：批量导入文本数据文件到数据库（常用于 CSV 或 TSV 格式文件）。
+	•	示例：
+
+mysqlimport -u root -p --local 数据库名 文件名.txt
+
+
+
+6. mysql_config_editor
+	•	用途：管理 MySQL 登录凭据配置，避免在命令行中直接暴露密码。
+	•	示例：
+
+mysql_config_editor set --login-path=local --host=localhost --user=root --password
+
+
+
+7. mysqlcheck
+	•	用途：检查、修复、优化或分析数据库中的表。
+	•	示例：
+
+mysqlcheck -u root -p --auto-repair --check --optimize 数据库名
+
+
+
+8. mysql_upgrade
+	•	用途：在 MySQL 升级后更新系统表和数据结构，确保系统兼容性。
+	•	示例：
+
+mysql_upgrade -u root -p
+
+以上命令行工具为日常管理 MySQL 数据库时常用的命令，使用时请根据实际环境和需求调整参数。
+
